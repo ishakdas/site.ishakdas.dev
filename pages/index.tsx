@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 
 import { Container, Title, Button, Grid, Link, Text } from '@components';
 import styles from '@styles/Home.module.css';
-import { NextPage,GetStaticPropsResult } from 'next';
 import HomeDataService from '../services/home_services ';
 import HomeModel from 'types/home_model';
 interface HomeProps {
