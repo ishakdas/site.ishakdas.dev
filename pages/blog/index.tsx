@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { GetStaticPropsResult, NextPage } from 'next';
 import { NotionAPI } from 'notion-client';
 
-import { getPageInfo, Page, POSTS } from '@posts/notion';
+import { getPageInfo, Page } from '@posts/notion';
 import { Title, Link, Container, Grid, Card, Image, Text } from '@components';
 import BlogDataService from '../../services/blog_services';
 import PostModel from 'types/post_model';
