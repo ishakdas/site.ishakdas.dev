@@ -5,6 +5,8 @@ import { NotionAPI } from 'notion-client';
 
 import { getPageInfo, Page, POSTS } from '@posts/notion';
 import { Title, Link, Container, Grid, Card, Image, Text } from '@components';
+import BlogDataService from '../../services/blog_services';
+import PostModel from 'types/post_model';
 
 interface BlogProps {
   pages: Page[];
@@ -69,28 +71,40 @@ const Blog: NextPage<BlogProps> = ({ pages }) => {
   );
 };
 
-const notion = new NotionAPI();
 
+const notion = new NotionAPI();
+var posts:Array<PostModel>;
+  
+ 
 export const getStaticProps = async (): Promise<
   GetStaticPropsResult<BlogProps>
 > => {
   const pages: Page[] = [];
-  await Promise.all(
-    Object.keys(POSTS).map(async (key) => {
-      const { uri, date } = POSTS[key as keyof typeof POSTS];
-      const page = await notion.getPage(uri);
-      if (page) {
-        const info = getPageInfo(page);
-        if (info.title !== 'Blog') {
-          pages.push({
-            ...info,
-            date,
-            uri: `/blog/${key}`,
-          });
-        }
+ await BlogDataService.getAll().then((response: any) => {
+    posts=response.data;
+ })
+ .catch((e: Error) => {
+   console.log(e);
+ });
+ await Promise.all(
+  Object.keys(posts).map(async (key)=> {
+    var _p=posts[Number(key)];
+    const page = await notion.getPage(_p.notion_link);
+    if (page) {
+      const info = getPageInfo(page);
+      if (info.title !== 'Blog') {
+        pages.push({
+          ...info,
+          date:_p.date,
+          uri: `/blog/${_p.slug}`,
+          author: _p.author,
+          cover:_p.image,
+          title:_p.title
+        });
       }
-    }),
-  );
+    }
+  }),
+);
 
   return {
     props: {

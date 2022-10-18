@@ -25,6 +25,7 @@ export interface PageInfo {
 export interface Page extends PageInfo {
   uri: string;
   date: string;
+  author:string;
 }
 
 export const getPageInfo = (page: ExtendedRecordMap): PageInfo => {

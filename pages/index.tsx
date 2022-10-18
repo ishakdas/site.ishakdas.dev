@@ -4,9 +4,15 @@ import { motion } from 'framer-motion';
 
 import { Container, Title, Button, Grid, Link, Text } from '@components';
 import styles from '@styles/Home.module.css';
-
-const Home = (): JSX.Element => (
-  <Container>
+import { NextPage,GetStaticPropsResult } from 'next';
+import HomeDataService from '../services/home_services ';
+import HomeModel from 'types/home_model';
+interface HomeProps {
+  pages: HomeModel;
+}
+const Home: React.FunctionComponent<HomeProps> = (props) => {
+  return (
+    <Container>
     <Container
       justifyContent="center"
       alignContent="center"
@@ -19,28 +25,26 @@ const Home = (): JSX.Element => (
       <Container alignItems="center" alignContent="center">
         <Image
           src="/me.webp"
-          alt="Antoine Ordonez"
+          alt={props.pages.name}
           width="120px"
           height="120px"
           objectFit="cover"
           className={styles.image}
         />
-        <Title>Antoine Ordonez</Title>
+        <Title>{props.pages.name}</Title>
         <Title
           fontSize="2rem"
           color="rgba(0, 0, 0, 0.6)"
           fontWeight="500"
           as="h2"
         >
-          I build cloud software.
+          {props.pages.shortDescription}
         </Title>
       </Container>
       <Container maxWidth="700px" gridGap="3rem">
         <Container>
           <Text textAlign="center">
-            I&apos;m a Full Stack developer with experience in DevOps, Backend,
-            Frontend and mobile development. Currently CTO of&nbsp;
-            <a href="https://shareview.fr">Shareview</a> and living in Paris.
+          {props.pages.description}
           </Text>
         </Container>
         <Link href="/about">
@@ -98,6 +102,23 @@ const Home = (): JSX.Element => (
       </Container>
     </Container>
   </Container>
-);
+  );
+    
+  
+}
+  export async function getStaticProps() {
+    const res = await HomeDataService.getAll()
+    var posts = await res.data
+    console.log(posts)
+    return {
+      props: {
+        pages:posts,
+        revalidate: false,
+      },
+    }
+  }
+
+
+
 
 export default Home;

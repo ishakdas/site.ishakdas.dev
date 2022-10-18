@@ -4,10 +4,11 @@ import { GetStaticPaths, GetStaticPropsResult, NextPage } from 'next';
 import { NotionRenderer } from 'react-notion-x';
 import { NotionAPI } from 'notion-client';
 
-import { getPageInfo, Page, POSTS } from '@posts/notion';
+import { getPageInfo, Page } from '@posts/notion';
 import { Container, Text } from '@components';
 import { ComponentProps } from 'react';
-
+import BlogDataService from '../../services/blog_services';
+import PostModel from 'types/post_model';
 const Code = dynamic(
   async () => (await import('react-notion-x/build/third-party/code')).Code,
 );
@@ -17,7 +18,7 @@ interface BlogProps {
   recordMap: ComponentProps<typeof NotionRenderer>['recordMap'];
 }
 
-const Blog: NextPage<BlogProps> = ({ page, recordMap }) => (
+const Blog: NextPage<BlogProps> = ({ page, recordMap}) => (
   <Container width={['100%', 1200]} maxWidth="100vw">
     <Head>
       <title>{page.title}</title>
@@ -32,47 +33,58 @@ const Blog: NextPage<BlogProps> = ({ page, recordMap }) => (
       }}
     />
     <Container textAlign="center" gridGap=".4rem" my="3rem">
-      <Text margin={0}>Antoine Ordonez</Text>
+      <Text margin={0}>{page.author}</Text>
       <small>{page.date}</small>
     </Container>
   </Container>
 );
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: Object.keys(POSTS).map((slug) => ({
-      params: {
-        slug,
-      },
-    })),
-    fallback: false,
-  };
-};
+export function function_name(){}
 
 type Params = {
   params: {
-    slug: keyof typeof POSTS;
+    slug: keyof typeof String;
   };
 };
 
 const notion = new NotionAPI();
 
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+
+  return {
+      paths: [], //indicates that no page needs be created at build time
+      fallback: 'blocking' //indicates the type of fallback
+  }
+}
 export const getStaticProps = async ({
   params: { slug },
-}: Params): Promise<GetStaticPropsResult<BlogProps>> => {
-  const { uri, date } = POSTS[slug];
+}: Params): Promise<GetStaticPropsResult<BlogProps>> => { 
+  
+   var posts:PostModel;
+  await BlogDataService.getBlogBySlug(slug)
+  .then((response: any) => {
+     posts =response.data;
+  })
+  .catch((e: Error) => {
+    console.log(e);
+  });
+  const { uri, date,author } ={
+    date: posts!.date,
+    uri: posts!.notion_link,
+    author:posts!.author
+  };
   const recordMap = await notion.getPage(uri);
   const pageInfo = getPageInfo(recordMap);
   const page: Page = {
     ...pageInfo,
     uri,
     date,
+    author
   };
 
   return {
     props: {
       page,
-      recordMap,
+      recordMap
     },
   };
 };
