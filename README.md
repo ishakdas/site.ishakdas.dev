@@ -4,8 +4,8 @@ Source code of my personal website & blog ✨
 
 Check the original code and repo [here](https://github.com/shellbear/shellbear.me) ⚡️
 
-[![home](.github/img/home_page.png)](https://shellbear.me/)
-[![blog](.github/img/blog.png)](https://shellbear.me/)
+[![home](.github/img/home_page.png)](https://site.ishakdas.dev/)
+[![blog](.github/img/blog.png)](https://site.ishakdas.dev/)
 
 ## ✨ Features
 
