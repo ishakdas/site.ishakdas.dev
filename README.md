@@ -2,7 +2,7 @@
 
 Source code of my personal website & blog ✨
 
-Check the original coe  [here](https://github.com/shellbear/shellbear.me) ⚡️
+Check the original code and repo [here](https://github.com/shellbear/shellbear.me) ⚡️
 
 [![home](.github/img/home.png)](https://shellbear.me/)
 [![blog](.github/img/blog.png)](https://shellbear.me/)
