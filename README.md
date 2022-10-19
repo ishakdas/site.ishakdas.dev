@@ -1,8 +1,8 @@
-# [shellbear.me](https://shellbear.me/)
+# [site.ishakdas.dev](https://site.ishakdas.dev/)
 
 Source code of my personal website & blog ✨
 
-Check the live version [here](https://shellbear.me/) ⚡️
+Check the original coe  [here](https://github.com/shellbear/shellbear.me) ⚡️
 
 [![home](.github/img/home.png)](https://shellbear.me/)
 [![blog](.github/img/blog.png)](https://shellbear.me/)
