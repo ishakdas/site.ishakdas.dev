@@ -23,7 +23,7 @@ const Home: React.FunctionComponent<HomeProps> = (props) => {
     >
       <Container alignItems="center" alignContent="center">
         <Image
-          src="/me.webp"
+          src={props.pages.profile}
           alt={props.pages.name}
           width="120px"
           height="120px"
@@ -68,7 +68,7 @@ const Home: React.FunctionComponent<HomeProps> = (props) => {
           justifyItems="stretch"
           alignItems="stretch"
         >
-          <Link href="mailto:hello@shellbear.me">
+          <Link href={props.pages.email}>
             <Button width="100%">
               <motion.span
                 initial={{ display: 'inline-block' }}
@@ -84,19 +84,7 @@ const Home: React.FunctionComponent<HomeProps> = (props) => {
               Say hello
             </Button>
           </Link>
-          <Link
-            target="_blank"
-            href="https://calendly.com/antoine-ordonez/intro"
-          >
-            <Button
-              width="100%"
-              backgroundColor="rgb(226,232,240)"
-              color="black"
-              variant="secondary"
-            >
-              Schedule a meeting
-            </Button>
-          </Link>
+          
         </Grid>
       </Container>
     </Container>
@@ -108,7 +96,6 @@ const Home: React.FunctionComponent<HomeProps> = (props) => {
   export async function getStaticProps() {
     const res = await HomeDataService.getAll()
     var posts = await res.data
-    console.log(posts)
     return {
       props: {
         pages:posts,
