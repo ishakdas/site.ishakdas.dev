@@ -13,7 +13,7 @@ import {
   SiFlutter,
 } from 'react-icons/si';
 import { getPosts, Post } from '@posts';
-import { TransparentLink } from '@components';
+//import { TransparentLink } from '@components';
 
 interface AboutProps {
   experiences: Post[];
@@ -51,7 +51,7 @@ const stacks = [
   
 ];
 
-const About = ({ experiences }: AboutProps): JSX.Element => (
+const About = ({  }: AboutProps): JSX.Element => (
   <Container>
     <Head>
       <title>About</title>
@@ -109,7 +109,8 @@ const About = ({ experiences }: AboutProps): JSX.Element => (
       </Title>
       <span> Soon...</span>
       <Container width="100%">
-        {experiences.map(({ data }, i) => (
+        {
+        /*experiences.map(({ data }, i) => (
           <TransparentLink href={`/about/${data.slug}`} key={data.slug}>
             <Grid
               key={i}
@@ -148,7 +149,9 @@ const About = ({ experiences }: AboutProps): JSX.Element => (
               </Grid>
             </Grid>
           </TransparentLink>
-        ))}
+        ))
+      */
+      }
       </Container>
     </Container>
   </Container>
