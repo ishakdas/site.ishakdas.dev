@@ -4,17 +4,9 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 import {
-  SiGo,
-  SiKubernetes,
-  SiElixir,
   SiPostgresql,
-  SiTypescript,
   SiAmazonaws,
-  SiGooglecloud,
-  SiTerraform,
   SiReact,
-  SiNextdotjs,
-  SiPython,
   SiGraphql,
   SiJava,
   SiCsharp,
