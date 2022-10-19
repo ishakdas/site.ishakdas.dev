@@ -57,7 +57,10 @@ const Projects = ({ projects }: ProjectProps): JSX.Element => (
       width="100%"
       gridGap="10%"
     >
-      {projects.map(({ data }) => (
+      <span className="center">Soon...</span>
+      {
+      /*
+      projects.map(({ data }) => (
         <ProjectContainer
           key={data.slug}
           flexDirection="column"
@@ -99,7 +102,8 @@ const Projects = ({ projects }: ProjectProps): JSX.Element => (
             </List>
           </Container>
         </ProjectContainer>
-      ))}
+      ))*/
+      }
     </Grid>
   </Container>
 );

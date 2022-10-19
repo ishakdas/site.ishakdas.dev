@@ -16,6 +16,9 @@ import {
   SiNextdotjs,
   SiPython,
   SiGraphql,
+  SiJava,
+  SiCsharp,
+  SiFlutter,
 } from 'react-icons/si';
 import { getPosts, Post } from '@posts';
 import { TransparentLink } from '@components';
@@ -26,16 +29,12 @@ interface AboutProps {
 
 const stacks = [
   {
-    Icon: SiGo,
-    url: 'https://golang.org/',
+    Icon: SiJava,
+    url: 'https://www.java.com/',
   },
   {
-    Icon: SiKubernetes,
-    url: 'https://kubernetes.io/',
-  },
-  {
-    Icon: SiTypescript,
-    url: 'https://www.typescriptlang.org/',
+    Icon: SiCsharp,
+    url: 'https://learn.microsoft.com/en-us/dotnet/csharp/',
   },
   {
     Icon: SiReact,
@@ -50,29 +49,14 @@ const stacks = [
     url: 'https://aws.amazon.com/',
   },
   {
-    Icon: SiNextdotjs,
-    url: 'https://nextjs.org/',
-  },
-  {
-    Icon: SiElixir,
-    url: 'https://elixir-lang.org/',
-  },
-  {
-    Icon: SiGooglecloud,
-    url: 'https://cloud.google.com/',
-  },
-  {
-    Icon: SiTerraform,
-    url: 'https://www.terraform.io/',
-  },
-  {
     Icon: SiPostgresql,
     url: 'https://www.postgresql.org/',
   },
   {
-    Icon: SiPython,
-    url: 'https://www.python.org/',
-  },
+    Icon: SiFlutter,
+    url: 'https://flutter.dev/',
+  }
+  
 ];
 
 const About = ({ experiences }: AboutProps): JSX.Element => (
@@ -82,15 +66,14 @@ const About = ({ experiences }: AboutProps): JSX.Element => (
     </Head>
     <Container alignContent="center" alignItems="center">
       <Title fontSize={['3rem', '4rem']} as="h2">
-        CTO & passionate
+        Developer & passionate
       </Title>
       <Container maxWidth={['100%', '720px']} marginY="2rem">
-        <Text>I&apos;m a Full-Stack/DevOps developer living in Paris.</Text>
+        <Text>I&apos;m a Full-Stack developer living in Izmit.</Text>
         <Text>
-          During my free time I like going gym, doing Bench Press, make design
-          and make video edits on After Effects. You can check some cool drone
-          edits on my&nbsp;
-          <a href="https://instagram.com/croissant2france">Instagram</a>.
+        In my spare time, I like to read, sleep, and do sports from time to time.
+        I post nice things on <a href="https://twitter.com/ishakdas ">Twitter</a>. But not all the time (:
+          
         </Text>
       </Container>
     </Container>
@@ -132,6 +115,7 @@ const About = ({ experiences }: AboutProps): JSX.Element => (
       <Title fontSize="40px" as="h2">
         Work Experiences
       </Title>
+      <span> Soon...</span>
       <Container width="100%">
         {experiences.map(({ data }, i) => (
           <TransparentLink href={`/about/${data.slug}`} key={data.slug}>

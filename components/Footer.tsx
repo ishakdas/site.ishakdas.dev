@@ -63,7 +63,7 @@ const Footer = (): JSX.Element => (
         <Link href="/">Home</Link>
         <Link href="/about">About</Link>
         <Link href="/projects">Projects</Link>
-        <Link href="mailto:hello@shellbear.me">Contact</Link>
+        <Link href="mailto:furkan.ishack@gmail.com">Contact</Link>
       </Grid>
     </Container>
     <FooterGrid>
